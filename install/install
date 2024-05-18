@@ -1,0 +1,12 @@
+#!/bin/sh
+
+APP=crossplane
+NAMESPACE=crossplane-system
+
+
+kubectl create namespace "$NAMESPACE"
+
+helm dependency update "$APP"
+helm install "$APP" ./crossplane --namespace "$NAMESPACE"
+
+watch helm list --namespace "$NAMESPACE"
